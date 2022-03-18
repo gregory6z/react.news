@@ -8,7 +8,10 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb"
+        "airbnb",
+        "next/core-web-vitals",
+        "plugin:@typescript-eslint/recommended"
+
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -20,11 +23,17 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "prettier"
+
     ],
     "rules": {
-      "react/jsx-props-no-spreading":"off",
+      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/no-explicit-any": "error",
       "react/jsx-filename-extension":"off",
-      "react/react-in-jsx-scope":"off"
+       "import/prefer-default-export":"off",
+       "jsx-a11y/anchor-is-valid":1,
+
     }
-}
+
+    }
