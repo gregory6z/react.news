@@ -10,18 +10,18 @@
 
   display:flex;
   align-items: center;
-  border: solid red 1px;
+
 
   nav{
     margin-left: 5rem;
     height: 5rem;
-    border: solid red 1px;
+
 
     a{
       display: inline-block;
       position: relative;
       padding: 0 0.5rem;
-      border: solid red 1px;
+
       line-height: 5rem;
       height: 5rem;
       color: var(--gray-300);
