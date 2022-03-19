@@ -1,13 +1,13 @@
-import Image from 'next/image';
+import styles from './styles.module.scss';
 
 export function Header() {
   return (
-    <header>
-      <div>
-        <Image src="/images/logo.svg" alt="ig.news" />
+    <header className={styles.headerContainer}>
+      <div className={styles.headerContent}>
+        <img src="/images/logo.svg" alt="ig.news" />
         <nav>
-          <a href="">Home</a>
-          <a href="">Posts</a>
+          <a className={styles.active} href="#">Home</a>
+          <a href="#">Posts</a>
         </nav>
       </div>
     </header>
