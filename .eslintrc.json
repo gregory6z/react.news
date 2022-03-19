@@ -35,7 +35,8 @@
        "jsx-a11y/anchor-is-valid":1,
        "react/jsx-props-no-spreading":"off",
        "import/extensions": "off",
-       "@next/next/no-img-element":"off"
+       "@next/next/no-img-element":"off",
+       "import/no-named-as-default":"off"
 
     }
 
