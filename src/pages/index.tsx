@@ -1,9 +1,20 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-expressions */
 /* eslint-disable react/no-unescaped-entities */
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import styles from './home.module.scss';
 import { SubscribeButton } from './components/SubscribeButton';
+import { stripe } from '../services/stripe';
 
-export default function Home() {
+interface HomeProps{
+  product: {
+    priceId:string;
+    amount: number;
+  }
+}
+
+export default function Home({ product }:HomeProps) {
   return (
     <>
       <Head>
@@ -30,10 +41,16 @@ export default function Home() {
             {' '}
             <br />
 
-            <span>pour 9,90€ par mois</span>
+            <span>
+              pour
+              {' '}
+              {product.amount}
+              {' '}
+              par mois
+            </span>
           </p>
 
-          <SubscribeButton />
+          <SubscribeButton priceId={product.priceId} />
         </section>
 
         <img src="/images/avatar.svg" alt="girl coding" />
@@ -42,3 +59,22 @@ export default function Home() {
     </>
   );
 }
+
+export const getServerSideProps:GetServerSideProps = async () => {
+  const price = await stripe.prices.retrieve('price_1IdUboB3tAmYigpYUY0xHJ5D');
+  ['product'];
+
+  const product = {
+    priceId: price.id,
+    amount: new Intl.NumberFormat('fr', {
+      style: 'currency',
+      currency: 'EUR',
+    }).format(price.unit_amount / 100),
+  };
+
+  return {
+    props: {
+      product,
+    },
+  };
+};
