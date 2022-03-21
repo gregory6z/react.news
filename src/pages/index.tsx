@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import Head from 'next/head';
 import styles from './home.module.scss';
+import { SubscribeButton } from './components/SubscribeButton';
 
 export default function Home() {
   return (
@@ -26,8 +27,13 @@ export default function Home() {
           </h1>
           <p>
             Accéder à toutes les publications
+            {' '}
+            <br />
+
+            <span>pour 9,90€ par mois</span>
           </p>
-          <span>pour 9,90€ par mois</span>
+
+          <SubscribeButton />
         </section>
 
         <img src="/images/avatar.svg" alt="girl coding" />
