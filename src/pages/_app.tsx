@@ -7,7 +7,6 @@ import { Header } from './components/Header';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider session={pageProps.session}>
-
       <Header />
       <Component {...pageProps} />
     </SessionProvider>

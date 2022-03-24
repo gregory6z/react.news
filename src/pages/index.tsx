@@ -1,20 +1,17 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable react/no-unescaped-entities */
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import styles from './home.module.scss';
 import { SubscribeButton } from './components/SubscribeButton';
 import { stripe } from '../services/stripe';
 
-interface HomeProps{
+interface HomeProps {
   product: {
-    priceId:string;
+    priceId: string;
     amount: number;
-  }
+  };
 }
 
-export default function Home({ product }:HomeProps) {
+export default function Home({ product }: HomeProps) {
   return (
     <>
       <Head>
@@ -23,45 +20,29 @@ export default function Home({ product }:HomeProps) {
 
       <main className={styles.contentContainer}>
         <section className={styles.hero}>
-          <span>
-            👏 Bonjour, bienvenue
-          </span>
+          <span>👏 Bonjour, bienvenue</span>
           <h1>
-            Nouveautés sur
-            {' '}
-            <br />
-            le
-            {' '}
-            <span>React</span>
-            {' '}
-            world
+            Nouveautés sur <br />
+            le <span>React</span> world
           </h1>
           <p>
-            Accéder à toutes les publications
-            {' '}
-            <br />
-
-            <span>
-              pour
-              {' '}
-              {product.amount}
-              {' '}
-              par mois
-            </span>
+            Accéder à toutes les publications <br />
+            <span>pour {product.amount} par mois</span>
           </p>
 
           <SubscribeButton priceId={product.priceId} />
         </section>
 
         <img src="/images/avatar.svg" alt="girl coding" />
-
       </main>
     </>
   );
 }
 
-export const getStaticProps:GetStaticProps = async () => {
-  const price = await stripe.prices.retrieve('price_1IdUboB3tAmYigpYUY0xHJ5D');
+export const getStaticProps: GetStaticProps = async () => {
+  const price = await stripe.prices.retrieve(
+    'price_1IdUboB3tAmYigpYUY0xHJ5D'
+  );
   ['product'];
 
   const product = {
