@@ -4,6 +4,7 @@ import { SignInButton } from '../SignInButton';
 export function Header() {
   return (
     <header className={styles.headerContainer}>
+      <div className={styles.headerBackground}></div>
       <div className={styles.headerContent}>
         <img src="/images/logo.svg" alt="ig.news" />
         <nav>

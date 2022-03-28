@@ -34,6 +34,11 @@ export default function Home({ product }: HomeProps) {
         </section>
 
         <img src="/images/avatar.svg" alt="girl coding" />
+        <img
+          src="/images/union.svg"
+          alt="union"
+          className={styles.background}
+        />
       </main>
     </>
   );

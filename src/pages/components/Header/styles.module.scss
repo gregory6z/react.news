@@ -1,6 +1,15 @@
 .headerContainer {
   height: 5rem;
   border-bottom: 1px solid var(--gray-800);
+  z-index: 2;
+}
+
+.headerBackground {
+  background: #121414;
+  opacity: 0.5;
+  height: 5rem;
+  width: 100%;
+  position: absolute;
 }
 .headerContent {
   max-width: 1120px;
@@ -10,6 +19,7 @@
 
   display: flex;
   align-items: center;
+  position: relative;
 
   nav {
     margin-left: 5rem;

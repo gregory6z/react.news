@@ -35,6 +35,9 @@
       "pre-commit": "pretty-quick --staged && npm run lint"
     }
   },
+  "browser":{
+    "child_process": false
+    },
   "main": "index.js",
   "author": "gregory6z <gregoryrag@gmail.com>",
   "license": "MIT"
