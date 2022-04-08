@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import { api } from '../../../services/api';
 import { getStripeJs } from '../../../services/stripe-js';
 import styles from './styles.module.scss';
@@ -11,12 +12,18 @@ interface SubscribeButtonProps {
 
 export function SubscribeButton({ priceId }: SubscribeButtonProps) {
   const { data: session } = useSession();
+  const router = useRouter();
 
   async function handleSubscribe() {
     if (!session) {
       signIn('github');
       return;
     }
+    if (session.activeSubscription) {
+      router.push('/posts');
+      return;
+    }
+
     try {
       const response = await api.post('/subscribe');
 
@@ -32,11 +39,7 @@ export function SubscribeButton({ priceId }: SubscribeButtonProps) {
     }
   }
   return (
-    <button
-      className={styles.subscribeButton}
-      type="button"
-      onClick={handleSubscribe}
-    >
+    <button className={styles.subscribeButton} type="button" onClick={handleSubscribe}>
       Abonnez-vous
     </button>
   );
