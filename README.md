@@ -1,9 +1,9 @@
 # [![Ignews](https://github.com/gregory6z/react.news/raw/main/public/images/logo.svg)](https://github.com/gregory6z/react.news/blob/main/public/images/logo.svg)  
   
 
-Portal de notícias com CMS e meio de pagamento integrado
+Portail d'actualités avec CMS et mode de paiement intégré
 
-Aplicação desenvolvida no curso IGNITE da [@rocketseat](https://www.rocketseat.com.br/)
+Application développée dans le cadre du cours IGNITE de [@rocketseat](https://www.rocketseat.com.br/)
 
  [![License MIT](https://camo.githubusercontent.com/5fab2edf3816ef9fb3ebcaf6e613fa7b40ff7652ec69e5f6e7f695aa24bf5ce6/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d4d49542d626c75652e737667)]() 
 
@@ -27,7 +27,7 @@ L'application est construite avec un modèle **Serveless**, pas besoin de créer
 
  [![License MIT]()]() 
 
-## 🔥 Execução da aplicação em produção
+## 🔥 Exécution de l'application en production
 
 -   Lien d'aplication: []()
 -   💳 pour vous abonner sans avoir à utiliser votre carte de crédit, vous pouvez utiliser ce faux numéro: `4242 4242 4242 4242`
