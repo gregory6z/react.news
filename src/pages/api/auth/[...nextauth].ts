@@ -1,39 +1,41 @@
-import NextAuth from 'next-auth';
-import GitHubProvider from 'next-auth/providers/github';
-
 import { query as q } from 'faunadb';
 
+import NextAuth from 'next-auth';
+import GithubProvider from 'next-auth/providers/github';
 import { fauna } from '../../../services/fauna';
 
+
+
 export default NextAuth({
+  pages: {
+    error: '/',
+  },
   providers: [
-    GitHubProvider({
+    GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-
-      authorization: {
-        params: {
-          // I wish to request additional permission scopes.
-          scope: 'read:user',
-        },
-      },
+      authorization: process.env.GITHUB_URL,
+      
     }),
+
   ],
+
+
   callbacks: {
     async session({ session }) {
       try {
         const userActiveSubscription = await fauna.query(
           q.Get(
-            q.Intersection(
+            q.Intersection([
               q.Match(
                 q.Index('subscription_by_user_ref'),
                 q.Select(
                   'ref',
-                  q.Get(q.Match('user_by_email', q.Casefold(session.user.email)))
+                  q.Get(q.Match(q.Index('user_by_email'), q.Casefold(session.user.email)))
                 )
               ),
-              q.Match(q.Index('subscription_by_status'), 'active')
-            )
+              q.Match(q.Index('subscription_by_status'), 'active'),
+            ])
           )
         );
 
@@ -41,7 +43,7 @@ export default NextAuth({
           ...session,
           activeSubscription: userActiveSubscription,
         };
-      } catch (error) {
+      } catch {
         return {
           ...session,
           activeSubscription: null,

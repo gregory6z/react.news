@@ -8,9 +8,7 @@ async function buffer(readable: Readable) {
   const chunks = [];
 
   for await (const chunk of readable) {
-    chunks.push(
-      typeof chunk === 'string' ? Buffer.from(chunk) : chunk
-    );
+    chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
   }
 
   return Buffer.concat(chunks);
@@ -20,11 +18,11 @@ export const config = {
   api: { bodyParser: false },
 };
 
-const relevantEvent = new Set([
+const relevantEvents = new Set([
   'checkout.session.completed',
   'customer.subscription.updated',
   'customer.subscription.deleted',
-]);
+])
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
@@ -45,14 +43,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const { type } = event;
 
-    if (relevantEvent.has(type)) {
+    if (relevantEvents.has(type)) {
       try {
         switch (type) {
-          case 'checkout.subscription.created':
-          case 'checkout.subscription.updated':
-          case 'checkout.subscription.deleted':
-            const subscription = event.data
-              .object as Stripe.Subscription;
+          case 'customer.subscription.updated':
+          case 'customer.subscription.deleted':
+            const subscription = event.data.object as Stripe.Subscription;
 
             await saveSubscription(
               subscription.id,
@@ -63,8 +59,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             break;
 
           case 'checkout.session.completed':
-            const checkoutSession = event.data
-              .object as Stripe.Checkout.Session;
+            const checkoutSession = event.data.object as Stripe.Checkout.Session;
 
             await saveSubscription(
               checkoutSession.subscription.toString(),
