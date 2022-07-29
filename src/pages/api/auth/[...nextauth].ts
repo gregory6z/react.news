@@ -4,8 +4,6 @@ import NextAuth from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import { fauna } from '../../../services/fauna';
 
-
-
 export default NextAuth({
   pages: {
     error: '/',
@@ -14,12 +12,9 @@ export default NextAuth({
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      authorization: process.env.GITHUB_URL,
-      
+      // authorization: process.env.GITHUB_URL,
     }),
-
   ],
-
 
   callbacks: {
     async session({ session }) {
